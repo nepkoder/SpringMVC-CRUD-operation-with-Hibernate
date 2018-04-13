@@ -46,6 +46,7 @@ public class TeacherController {
 	public String saveTeacher(@RequestParam("teacherFirstName") String tFirst,
 			@RequestParam("teacherLastName") String tLast, @RequestParam("teacherAddress") String tAddress,
 			@RequestParam("teacherEmail") String tEmail) {
+
 		// create model attribute to bind form data
 		Teacher theTeacher = new Teacher();
 		theTeacher.setFirstName(tFirst);
@@ -67,27 +68,40 @@ public class TeacherController {
 		theModel.addAttribute("teacher", theTeacher);
 
 		// display test
-		System.out.println(theTeacher.getFirstName());
-		System.out.println(theTeacher.getAddress());
-		System.out.println(theTeacher.getEmail());
+		// System.out.println(theTeacher.getFirstName());
+		// System.out.println(theTeacher.getAddress());
+		// System.out.println(theTeacher.getEmail());
 
 		return "edit-teacher";
 	}
 
 	@PostMapping("/update")
 	public String saveUpdateData(@ModelAttribute("teacher") Teacher teacher) {
-		
+
 		teacherService.updateTeacherInfo(teacher);
 		return "redirect:/teacher/list";
 	}
-	
+
 	@RequestMapping("/delete/{id}")
 	public String deleteTeacherData(@PathVariable("id") int theId) {
-		
-		teacherService.deleteTeacher(theId);
+
+		Teacher theTeacher = teacherService.getTeacherId(theId);
+		teacherService.deleteTeacher(theTeacher);
 		System.out.println(theId);
 		return "redirect:/teacher/list";
-		
+
+	}
+
+	@GetMapping("/search")
+	public String searchTeacher() {
+
+		return "search-teacher";
+	}
+
+	@RequestMapping("/search?result")
+	public String getSearchResult() {
+
+		return "redirect:/teacher/search";
 	}
 
 }

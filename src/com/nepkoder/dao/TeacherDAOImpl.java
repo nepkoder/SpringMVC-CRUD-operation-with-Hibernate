@@ -25,7 +25,7 @@ public class TeacherDAOImpl implements TeacherDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 
 		// List<Teacher> teacherList =
-		// currentSession.createCriteria(Teacher.class).list();
+//		List<Teacher> list =  currentSession.createCriteria(Teacher.class).list();
 
 		// create a query
 		Query<Teacher> theQuery = currentSession.createQuery("from Teacher", Teacher.class);
@@ -59,21 +59,31 @@ public class TeacherDAOImpl implements TeacherDAO {
 	public void updateTeacherInfo(Teacher theTeacher) {
 
 		Session session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(theTeacher);
+		session.update(theTeacher);
 
 	}
 
 	@Override
-	public void deleteTeacher(int id) {
+	public void deleteTeacher(Teacher teacher) {
 
 		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
-		System.out.println(id);
-		// delete object with primary key
-		Query theQuery = currentSession.createQuery("delete from Teacher where id=:teacherId");
-		theQuery.setParameter("teacherId", id);
+		currentSession.delete(teacher);
+	}
 
-		theQuery.executeUpdate();
+	@Override
+	public List<Teacher> searchTeacher(String name) {
+
+		Session currentSession = sessionFactory.getCurrentSession();
+
+		Query<Teacher> theQuery = currentSession.createQuery("from Teacher t where t.firstName LIKE '%:searchName'",
+				Teacher.class);
+		theQuery.setParameter("searchName", name);
+
+		List<Teacher> teacherList = theQuery.getResultList();
+
+		return teacherList;
+
 	}
 
 }

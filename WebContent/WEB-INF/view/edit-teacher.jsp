@@ -26,29 +26,32 @@
 						<form action="${pageContext.request.contextPath}/teacher/update"
 							method="POST">
 							<div class="form-group">
-								<input class="form-control" name="teacherID" type="text"
+								<input class="form-control" name="id" type="text"
 									value="${teacher.id}" readonly>
 							</div>
 							<div class="form-group">
-								<input class="form-control" name="teacherFirstName" type="text"
+								<input class="form-control" name="firstName" type="text"
 									value="${teacher.firstName}">
 							</div>
 
 							<div class="form-group">
-								<input class="form-control" name="teacherLastName" type="text"
+								<input class="form-control" name="lastName" type="text"
 									value="${teacher.lastName}">
 							</div>
 							<div class="form-group">
-								<input class="form-control" name="teacherAddress" type="text"
+								<input class="form-control" name="address" type="text"
 									value="${teacher.address}">
 							</div>
 							<div class="form-group">
-								<input class="form-control" name="teacherEmail" type="text"
+								<input class="form-control" name="email" type="text"
 									value="${teacher.email}">
 							</div>
 
 							<input class="btn btn-primary btn-block" type="submit"
 								value="Update Record">
+							
+							<a class="btn btn-primary btn-block" href="${pageContext.request.contextPath}/teacher/delete/${teacher.id}">Delete Record</a>	
+								
 						</form>
 
 					</div>
