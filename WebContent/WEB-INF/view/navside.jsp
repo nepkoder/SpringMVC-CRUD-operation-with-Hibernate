@@ -29,7 +29,7 @@
 					class="fa fa-desktop"></i>Add New Teacher</a></li>
 			<li><a href="${pageContext.request.contextPath}/teacher/search"><i
 					class="fa fa-bar-chart-o"></i>Search Teacher</a></li>
-			<li><a href="${pageContext.request.contextPath}/teacher/update"><i
+			<li><a href="${pageContext.request.contextPath}/teacher/list"><i
 					class="fa fa-fw fa-file"></i>Update Teacher</a></li>
 		</ul>
 

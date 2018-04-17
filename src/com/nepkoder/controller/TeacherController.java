@@ -98,7 +98,7 @@ public class TeacherController {
 		return "search-teacher";
 	}
 
-	@RequestMapping("/search?result")
+	@RequestMapping("/search?name={value}")
 	public String getSearchResult() {
 
 		return "redirect:/teacher/search";
